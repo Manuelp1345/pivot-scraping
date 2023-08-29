@@ -62,7 +62,7 @@ export class ScrapingService {
       const messages = [
         {
           role: 'user',
-          content: `From the following html, provide, product name and price ($) on JSON:`,
+          content: `From the following html, provide, product name and price ($) on JSON example { productName: '', price:''}:`,
         },
       ];
       for (let i = 0; i < datosFiltrados.length; i++) {
@@ -163,7 +163,7 @@ export class ScrapingService {
       const responseGPT = await gptQuest(messages);
       // return res.send(messages);
 
-      return responseGPT[0].message.content;
+      return JSON.parse(responseGPT[0].message.content);
     } else {
       console.log(
         'Failed to retrieve the webpage. Status code:',
